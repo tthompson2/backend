@@ -1,11 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-
-const authenticate = require('../auth/authenticate-middleware.js');
 const cookieParser = require("cookie-parser")
 const session = require('express-session');
 const knexSessionStore = require('connect-session-knex')(session);
+
+const restricted = require("../auth/auth-middleware");
+
+const authRouter = require("../auth/auth-router");
+const userRouter = require("../user/user-router");
 
 const server = express();
 
@@ -36,6 +39,9 @@ server.use(cors());
 server.use(express.json());
 server.use(cookieParser());
 server.use(session(sessionConfig));
+
+server.use("/api/user", restricted, userRouter);
+server.use("/api/auth", authRouter);
 
 server.get("/", (req, res) => {
     res.json({ api: "up" });
