@@ -15,7 +15,7 @@ exports.seed = async function(knex, Promise) {
     return knex('userInfo').insert([
       {firstName: 'tim', lastName: 'rogers', age: '40', date:'02052013' },
       {firstName: 'brandon', lastName: 'sheffield', age:'42', date:'05212000' } 
-    ])
-  })
+    ]);
+  });
 
 }
