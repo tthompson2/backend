@@ -22,7 +22,7 @@ exports.up = async function (knex) {
     info.string('firstName', 255).notNullable().unique();
     info.string('lastName', 255).notNullable();
     info.string('age').notNullable();
-    info.string('date').notNullable();
+    info.datetime('date').notNullable();
     info.integer('mood_id')
     .unsigned()
     .notNullable()
