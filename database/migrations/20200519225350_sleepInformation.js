@@ -8,15 +8,13 @@ exports.up = async function (knex) {
 
   })
 
-  await knex.schema.createTable('moodInfo', mood => {
+
+  await knex.schema.createTable('mood', mood => {
     mood.increments();
 
-    mood.string('mad');
-    mood.string('meh')
-    mood.string('happy');
-    mood.string('excited');
+    mood.text("mood_after_sleep")
+    .notNullable()
   })
-
 
   await knex.schema.createTable('userInfo', info => {
     info.increments();
@@ -25,11 +23,18 @@ exports.up = async function (knex) {
     info.string('lastName', 255).notNullable();
     info.string('age').notNullable();
     info.string('date').notNullable();
+    info.integer('mood_id')
+    .unsigned()
+    .notNullable()
+    .references('id')
+    .inTable('mood')
+    .onUpdate("CASCADE")
+    .onDelete("CASCADE")
   })
 }
 
 exports.down = async function (knex, Promise) {
+  await knex.schema.dropTableIfExists('mood');
   await knex.schema.dropTableIfExists('userInfo');
-  await knex.schema.dropTableIfExists('moodInfo');
   await knex.schema.dropTableIfExists('user');
 }
