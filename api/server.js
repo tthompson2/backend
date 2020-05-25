@@ -9,12 +9,13 @@ const restricted = require("../auth/auth-middleware");
 
 const authRouter = require("../auth/auth-router");
 const userRouter = require("../user/user-router");
+const secret = require("../config/secret")
 
 const server = express();
 
 const sessionConfig = {
     name: 'chocolate-chip',
-    secret: 'myspeshulsecret',
+    secret: secret,
     cookie: {
       maxAge: 3600 * 1000,
       secure: false, // should be true in production
