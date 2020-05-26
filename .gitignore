@@ -1,0 +1,5 @@
+# ignore environment variable file
+.env
+
+#ignore secrets
+*secret.js
