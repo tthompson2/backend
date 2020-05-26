@@ -9,6 +9,7 @@ const restricted = require("../auth/auth-middleware");
 
 const authRouter = require("../auth/auth-router");
 const userRouter = require("../user/user-router");
+const userInfoRouter = require("../userInfo/userInfo-router");
 const secret = require("../config/secret")
 
 const server = express();
@@ -42,6 +43,7 @@ server.use(cookieParser());
 server.use(session(sessionConfig));
 
 server.use("/api/user", restricted, userRouter);
+server.use("/api/userInfo", restricted, userInfoRouter);
 server.use("/api/auth", authRouter);
 
 server.get("/", (req, res) => {
