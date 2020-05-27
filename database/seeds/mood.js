@@ -6,7 +6,7 @@ exports.seed = async function (knex, promise) {
             return knex('mood').insert([
                 { mood_after_sleep: 'meh' },
                 { mood_after_sleep: 'happy' },
-                { mood_after_sleep: 'sad' },
+                { mood_after_sleep: 'excited' },
                 { mood_after_sleep: 'angry' },
             ])
         })
