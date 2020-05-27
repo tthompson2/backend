@@ -7,7 +7,7 @@ exports.seed = async function (knex, Promise) {
         { username: 'trevor', password: "4155478713" },
         { username: "jeff", password: "login1" },
         { username: "ahmad", password: "login2" },
-        { username: "tim", password: "login"}
+        { username: "tim", password: "login3"}
       ]);
     });
 
