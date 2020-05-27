@@ -10,7 +10,7 @@ const restricted = require("../auth/auth-middleware");
 const authRouter = require("../auth/auth-router");
 const userRouter = require("../user/user-router");
 const userInfoRouter = require("../userInfo/userInfo-router");
-const secret = require("../config/secret")
+const {secret} = require("../config/secret")
 
 const server = express();
 
