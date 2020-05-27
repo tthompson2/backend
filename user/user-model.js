@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs")
-const db = require("../database/dbconfig")
+const db = require("../database/dbConfig")
 
 async function add(user) {
 
