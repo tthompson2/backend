@@ -5,7 +5,8 @@ exports.up = async function (knex) {
 
     user.string('username', 255).notNullable().unique();
     user.string('password', 255).notNullable();
-
+    user.string('name', 255).notNullable().unique();
+    user.string('age').notNullable();
   })
 
 
@@ -16,12 +17,9 @@ exports.up = async function (knex) {
     .notNullable()
   })
 
-  await knex.schema.createTable('userInfo', info => {
+  await knex.schema.createTable('moodInfo', info => {
     info.increments();
 
-    info.string('firstName', 255).notNullable().unique();
-    info.string('lastName', 255).notNullable();
-    info.string('age').notNullable();
     info.datetime('date').notNullable();
     info.integer('mood_id')
     .unsigned()
@@ -35,6 +33,6 @@ exports.up = async function (knex) {
 
 exports.down = async function (knex, Promise) {
   await knex.schema.dropTableIfExists('mood');
-  await knex.schema.dropTableIfExists('userInfo');
+  await knex.schema.dropTableIfExists('moodInfo');
   await knex.schema.dropTableIfExists('user');
 }
