@@ -11,6 +11,7 @@ const authRouter = require("../auth/auth-router");
 const userRouter = require("../user/user-router");
 const userInfoRouter = require("../userInfo/userInfo-router");
 const {secret} = require("../config/secret")
+require('dotenv').config()
 
 const server = express();
 
