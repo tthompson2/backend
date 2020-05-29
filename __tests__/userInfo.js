@@ -12,14 +12,14 @@ afterAll(async () => {
 })
 
 describe("userInfo integration tests", () => {
-    it("Get userinfo", async() => {
+    it("Get moodinfo", async() => {
         const data = {username: "trevor", password: "4155478713"}
         const res = await supertest(server).post("/api/auth/login").send(data)
         const res = await supertest(server).get("/api/user/1")
         expect(res.statusCode).toBe(200)
     })
 
-    it("Get /userInfo/:id", async() => {
+    it("Get /moodInfo/:id", async() => {
         const data = {username: "trevor", password: "4155478713"}
         const res = await supertest(server).post("/api/auth/login").send(data)
         const res = await supertest(server).get("/api/user/100")
