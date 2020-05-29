@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken")
-const {secret} = require("../config/secret")
 
 module.exports = (req, res, next) => {
 
@@ -17,7 +16,7 @@ module.exports = (req, res, next) => {
     if (!token) {
       return res.status(401).json(authError1);
     }
-    jwt.verify(token, secret, (err, decodedPayload) => {
+    jwt.verify(token, process.env.secret, (err, decodedPayload) => {
       if (err) {
         return res.status(401).json(authError2);
       }

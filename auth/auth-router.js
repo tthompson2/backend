@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const Users = require("../user/user-model");
-const {secret} = require("../config/secret")
 const jwt = require("jsonwebtoken")
 
 router.post('/register', async (req, res, next) => {
@@ -39,11 +38,11 @@ router.post('/login', async (req, res, next) => {
       // req.session.user = username;
       res.status(200).json({
         message: `Welcome ${user.username}!`,
-        token: jwt.sign(tokenPayload, secret)
+        token: jwt.sign(tokenPayload, process.env.secret)
       });
       
     } else {
-      res.status(401).json({mesage: 'invalid credentials'});
+      res.status(401).json({message: 'invalid credentials'});
     }
   })
   .catch(error => {
