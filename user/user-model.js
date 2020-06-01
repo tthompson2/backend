@@ -1,4 +1,3 @@
-const bcrypt = require("bcryptjs")
 const db = require("../database/dbConfig")
 
 async function add(user) {
@@ -8,18 +7,18 @@ async function add(user) {
 }
 
 function find() {
-	return db("user").select("id", "username")
+	return db("user").select("id", "username", "name", "age")
 }
 
 function findBy(filter) {
 	return db("user")
-		.select("id", "username", "password")
+		.select("id", "username", "password", "name", "age")
 		.where(filter)
 }
 
 function findById(id) {
 	return db("user")
-		.select("id", "username")
+		.select("id", "username", "name", "age")
 		.where({ id })
 		.first()
 }
