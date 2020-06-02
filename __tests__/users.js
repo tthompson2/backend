@@ -32,8 +32,8 @@ describe("/api/auth endpoint unit tests", () => {
     it("Test basic /api/user endpoint availability", async() => {
         const data = {username: "trevthom", password: "4155478713", name: "trevorT", age: 28}
         const res = await supertest(server).post("/api/auth/login").send(data)
-        await supertest(server).get("/api/user/")
-        expect(res.statusCode).toBe(200)
+        const get = await supertest(server).get("/api/user/").set('Authorization', res.token)
+        expect(get.statusCode).toBe(200)
     })
 
 })
@@ -86,49 +86,47 @@ describe("login endpoint testing", () => {
         try {
             const data = { username: "cflor", password: "4155478713", "name": "flores", age: 23}
             await supertest(server).post("/api/auth/register").send(data)
-            const res = await (await supertest(server).post("/api/auth/login")).send(data);
+            const res = await supertest(server).post("/api/auth/login").send(data);
             expect(res.statusCode).toBe(200)
         } catch (err) {
             throw (err)
         }
     })
 
-    it("Get moodinfo", async() => {
+    it("Get user", async() => {
         const data = {username: "trevthom", password: "4155478713", name: "trevorT", age: 28}
         const res = await supertest(server).post("/api/auth/login").send(data)
-        await supertest(server).get("/api/user/1")
-        expect(res.statusCode).toBe(200)
+        const get = await supertest(server).get("/api/user/").set('Authorization', res.token)
+        expect(get.statusCode).toBe(200)
     })
 
     it("Get failed /user/:id", async() => {
         const data = {username: "trevor", password: "4155478713", name: "trevorT", age: 28}
         const res = await supertest(server).post("/api/auth/login").send(data)
-        await supertest(server).get("/api/user/100")
-        expect(res.statusCode).toBe(500)
+        const get = await supertest(server).get("/api/user/").set('Authorization', res.token)
+        expect(get.statusCode).toBe(500)
     })
 
     it("Get successful /user/:id", async() => {
         const data = {username: "trevthom", password: "4155478713", name: "trevorT", age: 28}
         const res = await supertest(server).post("/api/auth/login").send(data)
-        await supertest(server).get("/api/user/1");
-        expect(res.statusCode).toBe(200);
+        const get = await supertest(server).get("/api/user/").set('Authorization', res.token)
+        expect(get.statusCode).toBe(401);
     })
 
     it("Get successful /user/:id with a different username", async() => {
         const data = { username: "cflor", password: "4155478713", "name": "flores", age: 23}
             await supertest(server).post("/api/auth/register").send(data)
-            const res = await (await supertest(server).post("/api/auth/login")).send(data);
-            await supertest(server).get("/api/user/2")
-            expect(res.statusCode).toBe(200)
+            const res = await supertest(server).post("/api/auth/login").send(data);
+            const get = await supertest(server).get("/api/user/2").set('Authorization', res.token)
+            expect(get.statusCode).toBe(200)
     })
 
     it("Get successful /user/:id at id /1 with a different username", async() => {
         const data = { username: "cflor", password: "4155478713", "name": "flores", age: 23}
             await supertest(server).post("/api/auth/register").send(data)
-            const res = await (await supertest(server).post("/api/auth/login")).send(data);
-            await supertest(server).get("/api/user/1")
-            expect(res.statusCode).toBe(500)
+            const res = await supertest(server).post("/api/auth/login").send(data);
+            const get = await supertest(server).get("/api/user/").set('Authorization', res.token)
+            expect(get.statusCode).toBe(500)
     })    
 })
-
-//
