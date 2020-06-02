@@ -44,7 +44,7 @@ router.delete("/:id", (req, res, next) => {
 })
 
 router.put("/:id", (req, res, next) => {
-  User.putData(req.params.id)
+  User.putData(req.params.id, req.body)
   .then(() => res.status(204).code)
   .catch((err => next(err)))
 }) 
