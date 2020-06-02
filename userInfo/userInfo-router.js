@@ -35,14 +35,14 @@ router.get("/:id", (req, res, next) => {
   })
 })
 
-router.post("/", (req, res, next) => {
-    User.add(req.body)
-    .then(user => {
-      res.json(user)
-    })
-    .catch(err => {
-      res.send(err)
-    })
-})
+// router.post("/", (req, res, next) => {
+//     User.add(req.body)
+//     .then(user => {
+//       res.json(user)
+//     })
+//     .catch(err => {
+//       res.send(err)
+//     })
+// })
 
 module.exports = router;

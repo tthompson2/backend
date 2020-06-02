@@ -10,4 +10,29 @@ router.get("/", (req, res) => {
     .catch(err => res.send(err));
 });
 
+router.post("/add", (req, res, next) => {
+
+  const userInfo = req.body;
+
+  User.add(userInfo)
+  .then(saved => {
+    res.status(201).json(saved)
+  })
+  .catch(error => {
+    console.log(user)
+    res.status(500).json(error)
+  })
+
+})
+
+router.get("/:id", (req, res, next) => {
+  User.findById(req.params.id)
+  .then(user => {
+    res.json(user)
+  })
+  .catch(err => {
+    res.send(err)
+  })
+})
+
 module.exports = router;
