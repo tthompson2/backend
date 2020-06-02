@@ -34,8 +34,6 @@ router.post('/login', async (req, res, next) => {
     }
 
     if(user && bcrypt.compareSync(password, user.password)) {
-      // console.log(req.session.user)
-      // req.session.user = username;
       res.status(200).json({
         message: `Welcome ${user.username}!`,
         token: jwt.sign(tokenPayload, process.env.secret)

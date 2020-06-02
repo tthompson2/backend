@@ -19,8 +19,4 @@ server.use("/api/user", restricted, userRouter);
 server.use("/api/userInfo", restricted, userInfoRouter);
 server.use("/api/auth", authRouter);
 
-server.get("/", (req, res) => {
-    res.json({ api: "up" });
-  });
-
 module.exports = server;

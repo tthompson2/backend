@@ -35,4 +35,18 @@ router.get("/:id", (req, res, next) => {
   })
 })
 
+router.delete("/:id", (req, res, next) => {
+
+  User.remove(req.params.id)
+  .then(() => res.status(204).code)
+  .catch((err) => next(err))
+
+})
+
+router.put("/:id", (req, res, next) => {
+  User.putData(req.params.id)
+  .then(() => res.status(204).code)
+  .catch((err => next(err)))
+}) 
+
 module.exports = router;
