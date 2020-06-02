@@ -24,11 +24,11 @@ function findById(id) {
 }
 
 async function remove(id) {
-	return db("user").where({id}).delete()
+	await db("user").where({id}).delete()
 }
 
 async function putData(id, input) {
-	return db("user").where({id}).update(input)
+	await db("user").where({id}).update(input)
 }
  
 module.exports = {
